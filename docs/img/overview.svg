@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" width="900" height="420" role="img">
+<style>
+  .bg{fill:#ffffff}.panel{fill:#f6f8fa;stroke:#d0d7de}.card{fill:#ffffff;stroke:#d0d7de}
+  .t{fill:#1f2328;font:13px -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+  .s{fill:#59636e;font:12px -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+  .h{fill:#1f2328;font:600 15px -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+  .m{fill:#1f2328;font:12px ui-monospace,SFMono-Regular,Menlo,monospace}
+  .line{stroke:#8c959f;stroke-width:1.5;fill:none}
+  .blue{fill:#ddf4ff;stroke:#54aeff}.green{fill:#dafbe1;stroke:#4ac26b}.amber{fill:#fff8c5;stroke:#d4a72c}
+  .red{fill:#ffebe9;stroke:#ff8182}.violet{fill:#fbefff;stroke:#c297ff}
+  .fblue{fill:#0969da}.fgreen{fill:#1a7f37}.famber{fill:#9a6700}.fred{fill:#cf222e}
+  @media (prefers-color-scheme: dark){
+    .bg{fill:#0d1117}.panel{fill:#161b22;stroke:#30363d}.card{fill:#0d1117;stroke:#30363d}
+    .t,.h,.m{fill:#e6edf3}.s{fill:#9198a1}.line{stroke:#6e7681}
+    .blue{fill:#0c2d6b;stroke:#1f6feb}.green{fill:#0f3d1e;stroke:#2ea043}.amber{fill:#3b2e00;stroke:#9e6a03}
+    .red{fill:#4c1018;stroke:#da3633}.violet{fill:#2c1a4d;stroke:#8957e5}
+    .fblue{fill:#4493f8}.fgreen{fill:#3fb950}.famber{fill:#d29922}.fred{fill:#f85149}
+  }
+</style>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#8c959f"/></marker></defs>
+<rect class="bg" width="900" height="420" rx="12"/>
+<text class="h" x="24" y="36" text-anchor="start">N agent sessions, M scarce resources, one machine</text>
+<rect class="card" x="24" y="64" width="230" height="52" rx="8"/>
+<text class="t" x="38" y="85" text-anchor="start">Claude Code</text>
+<text class="m" x="38" y="104" text-anchor="start">slots run build -- xcodebuild</text>
+<path class="line" d="M254,90 C286.0,90 286.0,178 318,178" marker-end="url(#a)"/>
+<rect class="card" x="24" y="130" width="230" height="52" rx="8"/>
+<text class="t" x="38" y="151" text-anchor="start">Claude Code</text>
+<text class="m" x="38" y="170" text-anchor="start">slots run ios-sim --key A …</text>
+<path class="line" d="M254,156 C286.0,156 286.0,200 318,200" marker-end="url(#a)"/>
+<rect class="card" x="24" y="196" width="230" height="52" rx="8"/>
+<text class="t" x="38" y="217" text-anchor="start">Codex</text>
+<text class="m" x="38" y="236" text-anchor="start">slots hold ios-sim --key B</text>
+<path class="line" d="M254,222 C286.0,222 286.0,222 318,222" marker-end="url(#a)"/>
+<rect class="card" x="24" y="262" width="230" height="52" rx="8"/>
+<text class="t" x="38" y="283" text-anchor="start">Cursor agent</text>
+<text class="m" x="38" y="302" text-anchor="start">slots run android-emu …</text>
+<path class="line" d="M254,288 C286.0,288 286.0,244 318,244" marker-end="url(#a)"/>
+<rect class="card" x="24" y="328" width="230" height="52" rx="8"/>
+<text class="t" x="38" y="349" text-anchor="start">any CLI agent</text>
+<text class="m" x="38" y="368" text-anchor="start">slots run gpu -- train.py</text>
+<path class="line" d="M254,354 C286.0,354 286.0,266 318,266" marker-end="url(#a)"/>
+<rect class="panel" x="320" y="64" width="260" height="316" rx="12"/>
+<text class="h" x="450" y="90" text-anchor="middle">slots</text>
+<text class="s" x="450" y="108" text-anchor="middle">no daemon: every waiter is a process</text>
+<rect class="blue" x="336" y="122" width="228" height="42" rx="8"/>
+<text class="t" x="350" y="140" text-anchor="start">queue</text>
+<text class="s" x="350" y="156" text-anchor="start">tickets, first come first</text>
+<rect class="violet" x="336" y="172" width="228" height="42" rx="8"/>
+<text class="t" x="350" y="190" text-anchor="start">strategy</text>
+<text class="s" x="350" y="206" text-anchor="start">fifo · priority · fair · adaptive</text>
+<rect class="amber" x="336" y="222" width="228" height="42" rx="8"/>
+<text class="t" x="350" y="240" text-anchor="start">limits</text>
+<text class="s" x="350" y="256" text-anchor="start">live free memory, swap, load</text>
+<rect class="green" x="336" y="272" width="228" height="42" rx="8"/>
+<text class="t" x="350" y="290" text-anchor="start">self-healing</text>
+<text class="s" x="350" y="306" text-anchor="start">leases, reclaim, cool-down</text>
+<rect class="card" x="336" y="322" width="228" height="42" rx="8"/>
+<text class="t" x="350" y="340" text-anchor="start">state.json + flock</text>
+<text class="s" x="350" y="356" text-anchor="start">one file, shared by all</text>
+<path class="line" d="M580,178 C612.0,178 612.0,90 644,90" marker-end="url(#a)"/>
+<rect class="card" x="646" y="64" width="230" height="52" rx="8"/>
+<text class="t" x="660" y="85" text-anchor="start">ios-sim</text>
+<text class="s" x="862" y="85" text-anchor="end">simctl</text>
+<text class="s" x="660" y="104" text-anchor="start">iOS simulators</text>
+<rect class="green" x="830" y="94" width="12" height="12" rx="3"/>
+<rect class="green" x="846" y="94" width="12" height="12" rx="3"/>
+<path class="line" d="M580,200 C612.0,200 612.0,156 644,156" marker-end="url(#a)"/>
+<rect class="card" x="646" y="130" width="230" height="52" rx="8"/>
+<text class="t" x="660" y="151" text-anchor="start">build</text>
+<text class="s" x="862" y="151" text-anchor="end">token</text>
+<text class="s" x="660" y="170" text-anchor="start">compiles</text>
+<rect class="green" x="830" y="160" width="12" height="12" rx="3"/>
+<rect class="green" x="846" y="160" width="12" height="12" rx="3"/>
+<path class="line" d="M580,222 C612.0,222 612.0,222 644,222" marker-end="url(#a)"/>
+<rect class="card" x="646" y="196" width="230" height="52" rx="8"/>
+<text class="t" x="660" y="217" text-anchor="start">android-emu</text>
+<text class="s" x="862" y="217" text-anchor="end">process</text>
+<text class="s" x="660" y="236" text-anchor="start">emulators</text>
+<rect class="green" x="846" y="226" width="12" height="12" rx="3"/>
+<path class="line" d="M580,244 C612.0,244 612.0,288 644,288" marker-end="url(#a)"/>
+<rect class="card" x="646" y="262" width="230" height="52" rx="8"/>
+<text class="t" x="660" y="283" text-anchor="start">browser</text>
+<text class="s" x="862" y="283" text-anchor="end">plugin</text>
+<text class="s" x="660" y="302" text-anchor="start">headless Chrome</text>
+<rect class="green" x="814" y="292" width="12" height="12" rx="3"/>
+<rect class="green" x="830" y="292" width="12" height="12" rx="3"/>
+<rect class="green" x="846" y="292" width="12" height="12" rx="3"/>
+<path class="line" d="M580,266 C612.0,266 612.0,354 644,354" marker-end="url(#a)"/>
+<rect class="card" x="646" y="328" width="230" height="52" rx="8"/>
+<text class="t" x="660" y="349" text-anchor="start">gpu</text>
+<text class="s" x="862" y="349" text-anchor="end">token + keys</text>
+<text class="s" x="660" y="368" text-anchor="start">GPUs by index</text>
+<rect class="green" x="830" y="358" width="12" height="12" rx="3"/>
+<rect class="green" x="846" y="358" width="12" height="12" rx="3"/>
+<text class="s" x="450" y="404" text-anchor="middle">a slot is granted when one is free AND the machine can afford it</text>
+</svg>

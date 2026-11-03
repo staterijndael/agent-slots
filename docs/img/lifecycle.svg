@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 490" width="900" height="490" role="img">
+<style>
+  .bg{fill:#ffffff}.panel{fill:#f6f8fa;stroke:#d0d7de}.card{fill:#ffffff;stroke:#d0d7de}
+  .t{fill:#1f2328;font:13px -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+  .s{fill:#59636e;font:12px -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+  .h{fill:#1f2328;font:600 15px -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+  .m{fill:#1f2328;font:12px ui-monospace,SFMono-Regular,Menlo,monospace}
+  .line{stroke:#8c959f;stroke-width:1.5;fill:none}
+  .blue{fill:#ddf4ff;stroke:#54aeff}.green{fill:#dafbe1;stroke:#4ac26b}.amber{fill:#fff8c5;stroke:#d4a72c}
+  .red{fill:#ffebe9;stroke:#ff8182}.violet{fill:#fbefff;stroke:#c297ff}
+  .fblue{fill:#0969da}.fgreen{fill:#1a7f37}.famber{fill:#9a6700}.fred{fill:#cf222e}
+  @media (prefers-color-scheme: dark){
+    .bg{fill:#0d1117}.panel{fill:#161b22;stroke:#30363d}.card{fill:#0d1117;stroke:#30363d}
+    .t,.h,.m{fill:#e6edf3}.s{fill:#9198a1}.line{stroke:#6e7681}
+    .blue{fill:#0c2d6b;stroke:#1f6feb}.green{fill:#0f3d1e;stroke:#2ea043}.amber{fill:#3b2e00;stroke:#9e6a03}
+    .red{fill:#4c1018;stroke:#da3633}.violet{fill:#2c1a4d;stroke:#8957e5}
+    .fblue{fill:#4493f8}.fgreen{fill:#3fb950}.famber{fill:#d29922}.fred{fill:#f85149}
+  }
+</style>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#8c959f"/></marker></defs>
+<rect class="bg" width="900" height="490" rx="12"/>
+<text class="h" x="24" y="36" text-anchor="start">The life of one request</text>
+<text class="m" x="24" y="58" text-anchor="start">slots run ios-sim --key A -- xcodebuild test-without-building …</text>
+<rect class="blue" x="24" y="104" width="196" height="58" rx="8"/>
+<text class="t" x="38" y="128" text-anchor="start">1  queue</text>
+<text class="s" x="38" y="148" text-anchor="start">a ticket in state.json</text>
+<path class="line" d="M220,133 L240,133" marker-end="url(#a)"/>
+<rect class="green" x="242" y="104" width="196" height="58" rx="8"/>
+<text class="t" x="256" y="128" text-anchor="start">2  tidy</text>
+<text class="s" x="256" y="148" text-anchor="start">take back dead slots</text>
+<path class="line" d="M438,133 L458,133" marker-end="url(#a)"/>
+<rect class="amber" x="460" y="104" width="196" height="58" rx="8"/>
+<text class="t" x="474" y="128" text-anchor="start">3  allowed?</text>
+<text class="s" x="474" y="148" text-anchor="start">capacity lowered by limits</text>
+<path class="line" d="M656,133 L676,133" marker-end="url(#a)"/>
+<rect class="violet" x="678" y="104" width="196" height="58" rx="8"/>
+<text class="t" x="692" y="128" text-anchor="start">4  plan</text>
+<text class="s" x="692" y="148" text-anchor="start">strategy orders waiters</text>
+<rect class="blue" x="24" y="254" width="196" height="58" rx="8"/>
+<text class="t" x="38" y="278" text-anchor="start">5  grant</text>
+<text class="s" x="38" y="298" text-anchor="start">marked "starting"</text>
+<path class="line" d="M220,283 L240,283" marker-end="url(#a)"/>
+<rect class="green" x="242" y="254" width="196" height="58" rx="8"/>
+<text class="t" x="256" y="278" text-anchor="start">6  start</text>
+<text class="s" x="256" y="298" text-anchor="start">boot, watch for crashes</text>
+<path class="line" d="M438,283 L458,283" marker-end="url(#a)"/>
+<rect class="card" x="460" y="254" width="196" height="58" rx="8"/>
+<text class="t" x="474" y="278" text-anchor="start">7  run</text>
+<text class="s" x="474" y="298" text-anchor="start">your command, with timeout</text>
+<path class="line" d="M656,283 L676,283" marker-end="url(#a)"/>
+<rect class="card" x="678" y="254" width="196" height="58" rx="8"/>
+<text class="t" x="692" y="278" text-anchor="start">8  release</text>
+<text class="s" x="692" y="298" text-anchor="start">stop it if nobody waits</text>
+<path class="line" d="M776,162 L776,208 L122,208 L122,252" marker-end="url(#a)"/>
+<path class="line" d="M558,104 L558,90 L122,90 L122,102" marker-end="url(#a)" stroke-dasharray="4 4"/>
+<text class="s" x="340" y="84" text-anchor="middle">not yet: poll again in 2 s; a waiter for a busy key blocks no one</text>
+<rect class="panel" x="24" y="336" width="270" height="132" rx="8"/>
+<text class="t" x="38" y="360" text-anchor="start">2  tidy frees a slot when</text>
+<text class="s" x="38" y="382" text-anchor="start">· the holder process died (pid + start time)</text>
+<text class="s" x="38" y="401" text-anchor="start">· a lease ran out</text>
+<text class="s" x="38" y="420" text-anchor="start">· the holder died mid-start</text>
+<text class="s" x="38" y="439" text-anchor="start">· its instance is gone 10 min after grant</text>
+<text class="s" x="38" y="458" text-anchor="start">· …and stops the orphaned command</text>
+<rect class="panel" x="314" y="336" width="270" height="132" rx="8"/>
+<text class="t" x="328" y="360" text-anchor="start">6  a failed start</text>
+<text class="s" x="328" y="382" text-anchor="start">· stops at the first crash report</text>
+<text class="s" x="328" y="401" text-anchor="start">· shuts down cleanly, retries once</text>
+<text class="s" x="328" y="420" text-anchor="start">· frees the slot</text>
+<text class="s" x="328" y="439" text-anchor="start">· cools the key down 1, 2, 4… 15 min</text>
+<rect class="panel" x="604" y="336" width="270" height="132" rx="8"/>
+<text class="t" x="618" y="360" text-anchor="start">never</text>
+<text class="s" x="618" y="382" text-anchor="start">· stops an instance mid-start</text>
+<text class="s" x="618" y="401" text-anchor="start">· revokes a holder when memory drops</text>
+<text class="s" x="618" y="420" text-anchor="start">· runs a stale copy: all re-exec</text>
+<text class="s" x="618" y="439" text-anchor="start">· the one canonical version</text>
+</svg>

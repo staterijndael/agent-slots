@@ -1,0 +1,49 @@
+{
+  "canonical": "/Users/YOU/src/agent-slots/agent_slots",
+  "poll_seconds": 2,
+  "pools": {
+    "ios-sim": {
+      "type": "simctl",
+      "capacity": 2,
+      "strategy": "fifo",
+      "lease_minutes": 10,
+      "max_lease_minutes": 30,
+      "run_timeout": 1200,
+      "stale_seconds": 600,
+      "start_timeout": 180,
+      "limits": [
+        {"when": {"free_below": 10}, "max": 0},
+        {"when": {"free_below": 20}, "max": 1},
+        {"when": {"swap_above": 90, "free_below": 25}, "max": 1},
+        {"when": {"load_above": 3}, "max": 1}
+      ]
+    },
+    "build": {
+      "type": "token",
+      "capacity": 2,
+      "strategy": "fair",
+      "run_timeout": 3600,
+      "limits": [
+        {"when": {"free_below": 25}, "max": 1},
+        {"when": {"load_above": 2}, "max": 1}
+      ]
+    },
+    "android-emu": {
+      "type": "process",
+      "capacity": 1,
+      "keys": ["Pixel_8_API_35"],
+      "start": ["emulator", "-avd", "{key}", "-no-window", "-no-snapshot-save"],
+      "ready": ["sh", "-c", "adb wait-for-device shell getprop sys.boot_completed | grep -q 1"],
+      "stop": ["adb", "emu", "kill"],
+      "start_timeout": 240,
+      "limits": [{"when": {"free_below": 30}, "max": 0}]
+    },
+    "browser": {
+      "type": "token",
+      "capacity": 3,
+      "strategy": "fair",
+      "lease_minutes": 15,
+      "limits": [{"when": {"free_below": 15}, "max": 1}]
+    }
+  }
+}

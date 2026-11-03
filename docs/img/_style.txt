@@ -1,0 +1,19 @@
+<style>
+  .bg{fill:#ffffff}.panel{fill:#f6f8fa;stroke:#d0d7de}.card{fill:#ffffff;stroke:#d0d7de}
+  .t{fill:#1f2328;font:13px -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+  .s{fill:#59636e;font:12px -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+  .h{fill:#1f2328;font:600 15px -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+  .m{fill:#1f2328;font:12px ui-monospace,SFMono-Regular,Menlo,monospace}
+  .line{stroke:#8c959f;stroke-width:1.5;fill:none}
+  .blue{fill:#ddf4ff;stroke:#54aeff}.green{fill:#dafbe1;stroke:#4ac26b}.amber{fill:#fff8c5;stroke:#d4a72c}
+  .red{fill:#ffebe9;stroke:#ff8182}.violet{fill:#fbefff;stroke:#c297ff}
+  .fblue{fill:#0969da}.fgreen{fill:#1a7f37}.famber{fill:#9a6700}.fred{fill:#cf222e}
+  @media (prefers-color-scheme: dark){
+    .bg{fill:#0d1117}.panel{fill:#161b22;stroke:#30363d}.card{fill:#0d1117;stroke:#30363d}
+    .t,.h,.m{fill:#e6edf3}.s{fill:#9198a1}.line{stroke:#6e7681}
+    .blue{fill:#0c2d6b;stroke:#1f6feb}.green{fill:#0f3d1e;stroke:#2ea043}.amber{fill:#3b2e00;stroke:#9e6a03}
+    .red{fill:#4c1018;stroke:#da3633}.violet{fill:#2c1a4d;stroke:#8957e5}
+    .fblue{fill:#4493f8}.fgreen{fill:#3fb950}.famber{fill:#d29922}.fred{fill:#f85149}
+  }
+</style>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#8c959f"/></marker></defs>
