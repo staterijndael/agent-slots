@@ -67,6 +67,21 @@ class Base(unittest.TestCase):
         self.assertEqual(job.returncode, 0, err)
         return out
 
+    def wait_entered(self, count, timeout=10):
+        """Waits until `count` requests have queued or been granted, so a slow machine keeps the arrival order."""
+        path = self.root / 'home' / 'state.json'
+        deadline = time.time() + timeout
+        while time.time() < deadline:
+            try:
+                data = json.loads(path.read_text())
+                log = (self.root / 'home' / 'log.txt').read_text() if (self.root / 'home' / 'log.txt').exists() else ''
+                if len(data.get('queue', [])) + log.count('slot -> ') >= count:
+                    return
+            except (OSError, ValueError):
+                pass
+            time.sleep(0.02)
+        self.fail(f'{count} requests did not queue in {timeout} s')
+
     def sim(self):
         return json.loads(self.sims.read_text()) if self.sims.exists() else {'booted': [], 'max': 0, 'events': []}
 
@@ -83,9 +98,9 @@ class Base(unittest.TestCase):
 class Simulators(Base):
     def test_two_slots_stay_busy_never_three_boot_first_come_first_served(self):
         jobs = []
-        for letter in 'ABCDE':
+        for n, letter in enumerate('ABCDE'):
             jobs.append(self.start('run', 'sim', '--owner', f'chat-{letter}', '--key', udid(letter), '--', *sleep(0.6)))
-            time.sleep(0.08)
+            self.wait_entered(n + 1)  # arrival order is queue order, not process start order
         started = time.time()
         for job in jobs:
             self.ok(job, 30)
