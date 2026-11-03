@@ -1,0 +1,14 @@
+{
+  "name": "agent-slots",
+  "description": "Agent Slots: share scarce machine resources between parallel agent sessions",
+  "owner": {"name": "Danil Giniiatullin", "url": "https://github.com/staterijndael"},
+  "plugins": [
+    {
+      "name": "agent-slots",
+      "source": "./",
+      "description": "Parallel agent sessions share iOS simulators, emulators, compiles, browsers and GPUs through one memory-aware queue",
+      "category": "development",
+      "tags": ["parallel-agents", "ios", "android", "scheduler"]
+    }
+  ]
+}

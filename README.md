@@ -34,6 +34,20 @@ recovers on its own when an agent dies, hangs or forgets.
 
 ## Quick start
 
+### Claude Code plugin (easiest)
+
+```text
+/plugin install agent-slots --marketplace staterijndael/agent-slots
+```
+
+On older Claude Code: `/plugin marketplace add staterijndael/agent-slots`, then `/plugin install agent-slots@agent-slots`.
+The plugin puts `slots` on every session's PATH, tells each new session that heavy work goes through it, writes a
+starter config on first use, and refuses direct `xcodebuild`, `xcrun simctl boot`, `./gradlew` builds and
+`emulator -avd` for pools you have, with a message that shows the `slots` command to run instead.
+`/agent-slots:setup` sizes the pools for your machine; `/agent-slots:status` explains the queue.
+
+### Any agent (Codex, Cursor, scripts)
+
 ```bash
 git clone https://github.com/staterijndael/agent-slots ~/src/agent-slots
 ln -s ~/src/agent-slots/bin/slots ~/.local/bin/slots    # any folder on your PATH
@@ -214,7 +228,7 @@ everyone. The cost is a few small subprocess calls per second with fifteen waite
 ## Development
 
 ```bash
-python3 -m unittest discover tests      # 33 cases against a fake simctl and fake memory readings
+python3 -m unittest discover tests      # 41 cases: a fake simctl, fake memory readings, the plugin hooks
 ```
 
 Each case is an incident or a rule; [docs/DESIGN.md](docs/DESIGN.md) lists the incidents behind the rules.

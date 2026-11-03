@@ -34,6 +34,21 @@
 
 ## Быстрый старт
 
+### Плагин для Claude Code (проще всего)
+
+```text
+/plugin install agent-slots --marketplace staterijndael/agent-slots
+```
+
+В старых версиях Claude Code: `/plugin marketplace add staterijndael/agent-slots`, затем
+`/plugin install agent-slots@agent-slots`. Плагин кладёт `slots` в PATH каждой сессии, сообщает каждой новой
+сессии, что тяжёлая работа идёт через него, при первом запуске пишет стартовый конфиг и не даёт запустить
+напрямую `xcodebuild`, `xcrun simctl boot`, сборки `./gradlew` и `emulator -avd` для пулов, которые у вас есть.
+Вместо этого агент получает сообщение с нужной командой `slots`. `/agent-slots:setup` подбирает пулы под вашу
+машину, `/agent-slots:status` объясняет очередь.
+
+### Любой агент (Codex, Cursor, скрипты)
+
 ```bash
 git clone https://github.com/staterijndael/agent-slots ~/src/agent-slots
 ln -s ~/src/agent-slots/bin/slots ~/.local/bin/slots    # любая папка из PATH
@@ -220,7 +235,7 @@ Code `run_in_background`) или сначала `slots hold`, а команду 
 ## Разработка
 
 ```bash
-python3 -m unittest discover tests      # 33 сценария на фейковом simctl и фейковых показаниях памяти
+python3 -m unittest discover tests      # 41 сценарий: фейковый simctl, фейковая память, хуки плагина
 ```
 
 Каждый сценарий — реальный инцидент или правило; [docs/DESIGN.md](docs/DESIGN.md) перечисляет инциденты, из
