@@ -107,7 +107,11 @@ class Simulators(Base):
         sim = self.sim()
         self.assertEqual(sim['max'], 2, 'never more than two booted')
         self.assertEqual(sim['booted'], [], 'every simulator is shut down when its work ends')
-        self.assertEqual([e[1] for e in self.events() if e[0] == 'boot'], [udid(x) for x in 'ABCDE'])
+        # Grant order is the queue order; boots of two slots granted together may start in either order.
+        log = (self.root / 'home' / 'log.txt').read_text()
+        granted = [line.split('slot -> ')[1].split(' ')[0] for line in log.splitlines() if 'slot -> ' in line]
+        self.assertEqual(granted, [f'chat-{x}' for x in 'ABCDE'], 'first come, first served')
+        self.assertEqual(sorted(e[1] for e in self.events() if e[0] == 'boot'), [udid(x) for x in 'ABCDE'])
         self.assertLess(time.time() - started, 4.0, 'three rounds on two slots; idle slots would take longer')
 
     def test_stray_is_shut_down_when_room_is_needed(self):
