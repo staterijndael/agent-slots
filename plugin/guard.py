@@ -90,10 +90,12 @@ def main():
         return 0
     pool, text = found
     tool = text.split()[0]
+    root = os.environ.get('CLAUDE_PLUGIN_ROOT')
+    slots = os.path.join(root, 'scripts', 'slots') if root else 'slots'
     key = ' --key <udid>' if pool == 'ios-sim' else ''
     print(f"agent-slots: `{tool}` runs outside the queue. Several agent sessions share this machine's '{pool}' "
-          f"pool, so run it as:\n  slots run {pool} --owner <your session name>{key} -- {text[:200]}\n"
-          f"For a hands-on check use `slots hold {pool}{key}`. `slots status` shows the queue. If the user asked to "
+          f"pool, so run it as:\n  {slots} run {pool} --owner <your session name>{key} -- {text[:200]}\n"
+          f"For a hands-on check use `{slots} hold {pool}{key}`. `{slots} status` shows the queue. If the user asked to "
           f"bypass the queue, end the command with `# slots-ok`.", file=sys.stderr)
     return 2
 

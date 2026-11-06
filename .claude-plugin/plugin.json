@@ -1,8 +1,8 @@
 {
   "name": "agent-slots",
   "displayName": "Agent Slots",
-  "version": "0.2.0",
-  "description": "Parallel agent sessions share iOS simulators, emulators, compiles, browsers and GPUs through one memory-aware queue. Puts `slots` on the agent's PATH, tells every session to use it, and stops compiles and boots that bypass the queue.",
+  "version": "0.3.0",
+  "description": "Parallel agent sessions share iOS simulators, emulators, compiles, browsers and GPUs through one memory-aware queue. Gives every session the `slots` command, tells it to use it, and stops compiles and simulator boots that bypass the queue. Runs locally; no network.",
   "author": {
     "name": "Danil Giniiatullin",
     "url": "https://github.com/staterijndael"
@@ -18,5 +18,8 @@
     "xcodebuild",
     "memory"
   ],
-  "icon": "./.claude-plugin/icon.png"
+  "icon": "./.claude-plugin/icon.png",
+  "documentationUrl": "https://github.com/staterijndael/agent-slots#readme",
+  "supportUrl": "https://github.com/staterijndael/agent-slots/issues",
+  "privacyPolicyUrl": "https://github.com/staterijndael/agent-slots/blob/main/PRIVACY.md"
 }

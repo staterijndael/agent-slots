@@ -101,7 +101,7 @@ class SessionStart(unittest.TestCase):
 
     def test_slots_runs_from_the_plugin_bin_folder(self):
         self.start()
-        run = subprocess.run([str(REPO / 'bin' / 'slots'), 'status'], text=True, capture_output=True,
+        run = subprocess.run([str(REPO / 'scripts' / 'slots'), 'status'], text=True, capture_output=True,
                              env=dict(self.env, SLOTS_FAKE_FREE='50'))
         self.assertEqual(run.returncode, 0, run.stderr)
         self.assertIn('build (token', run.stdout)

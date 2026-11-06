@@ -5,7 +5,8 @@ description: Configure agent-slots pools for this machine (memory, cores, simula
 
 # Tune agent-slots for this machine
 
-The config is `~/.agent-slots/config.json` (or `$SLOTS_CONFIG`). Every waiting agent re-reads it on its next poll,
+The command is `${CLAUDE_PLUGIN_ROOT}/scripts/slots` (written `slots` below). The config is
+`~/.agent-slots/config.json` (or `$SLOTS_CONFIG`). Every waiting agent re-reads it on its next poll,
 so a change takes effect at once. Show the user the proposed config and write it only after they agree.
 
 1. Measure the machine:

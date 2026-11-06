@@ -41,16 +41,30 @@ recovers on its own when an agent dies, hangs or forgets.
 ```
 
 On older Claude Code: `/plugin marketplace add staterijndael/agent-slots`, then `/plugin install agent-slots@agent-slots`.
-The plugin puts `slots` on every session's PATH, tells each new session that heavy work goes through it, writes a
+The plugin gives every session the `slots` command (as `${CLAUDE_PLUGIN_ROOT}/scripts/slots`), tells each new session that heavy work goes through it, writes a
 starter config on first use, and refuses direct `xcodebuild`, `xcrun simctl boot`, `./gradlew` builds and
 `emulator -avd` for pools you have, with a message that shows the `slots` command to run instead.
 `/agent-slots:setup` sizes the pools for your machine; `/agent-slots:status` explains the queue.
+
+#### What the plugin runs on your machine
+Everything is local Python from this repository; nothing is sent over the network ([PRIVACY.md](PRIVACY.md)).
+- **SessionStart hook** (`plugin/session_start.py`): copies the `agent_slots` package into the plugin's data
+  folder, writes `~/.agent-slots/config.json` if it does not exist, and adds one paragraph to the session's
+  context naming the pools and the `slots` command.
+- **PreToolUse hook on Bash** (`plugin/guard.py`): reads the command the agent is about to run and refuses it
+  (exit 2, with the `slots` command to use instead) when it is a direct compile, simulator boot or emulator start
+  for a pool in your config. It never runs or changes the command, and lets everything through on any error.
+- **`slots` itself** (`scripts/slots`, run by the agent): reads and writes `~/.agent-slots/`, reads memory, swap,
+  load and the process list, and starts and stops the simulators, emulators or processes your pools name.
+
+Works in Claude Code, and in Cowork when the session runs on your computer. On claude.ai chat only the skills load,
+and they have nothing to act on there.
 
 ### Any agent (Codex, Cursor, scripts)
 
 ```bash
 git clone https://github.com/staterijndael/agent-slots ~/src/agent-slots
-ln -s ~/src/agent-slots/bin/slots ~/.local/bin/slots    # any folder on your PATH
+ln -s ~/src/agent-slots/scripts/slots ~/.local/bin/slots    # any folder on your PATH
 slots init                                              # writes ~/.agent-slots/config.json
 ```
 

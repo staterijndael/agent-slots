@@ -41,17 +41,30 @@
 ```
 
 В старых версиях Claude Code: `/plugin marketplace add staterijndael/agent-slots`, затем
-`/plugin install agent-slots@agent-slots`. Плагин кладёт `slots` в PATH каждой сессии, сообщает каждой новой
+`/plugin install agent-slots@agent-slots`. Плагин даёт каждой сессии команду `slots` (как `${CLAUDE_PLUGIN_ROOT}/scripts/slots`), сообщает каждой новой
 сессии, что тяжёлая работа идёт через него, при первом запуске пишет стартовый конфиг и не даёт запустить
 напрямую `xcodebuild`, `xcrun simctl boot`, сборки `./gradlew` и `emulator -avd` для пулов, которые у вас есть.
 Вместо этого агент получает сообщение с нужной командой `slots`. `/agent-slots:setup` подбирает пулы под вашу
 машину, `/agent-slots:status` объясняет очередь.
 
+#### Что плагин делает на вашей машине
+Всё это локальный Python из этого репозитория; в сеть ничего не уходит ([PRIVACY.md](PRIVACY.md)).
+- **Хук SessionStart** (`plugin/session_start.py`): копирует пакет `agent_slots` в папку данных плагина, пишет
+  `~/.agent-slots/config.json`, если его нет, и добавляет в контекст сессии один абзац с пулами и командой `slots`.
+- **Хук PreToolUse на Bash** (`plugin/guard.py`): читает команду, которую агент собирается запустить, и отклоняет
+  её (exit 2, с командой `slots` взамен), если это прямая сборка, загрузка симулятора или запуск эмулятора для
+  пула из вашего конфига. Команду он не запускает и не меняет, а при любой ошибке пропускает.
+- **Сам `slots`** (`scripts/slots`, его запускает агент): читает и пишет `~/.agent-slots/`, читает память, своп,
+  нагрузку и список процессов, запускает и останавливает симуляторы, эмуляторы и процессы, которые названы в пулах.
+
+Работает в Claude Code и в Cowork, если сессия идёт на вашем компьютере. В чате claude.ai загрузятся только
+навыки, и делать там им нечего.
+
 ### Любой агент (Codex, Cursor, скрипты)
 
 ```bash
 git clone https://github.com/staterijndael/agent-slots ~/src/agent-slots
-ln -s ~/src/agent-slots/bin/slots ~/.local/bin/slots    # любая папка из PATH
+ln -s ~/src/agent-slots/scripts/slots ~/.local/bin/slots    # любая папка из PATH
 slots init                                              # создаёт ~/.agent-slots/config.json
 ```
 

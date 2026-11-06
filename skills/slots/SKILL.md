@@ -6,7 +6,10 @@ description: Use before compiling, running tests on an iOS simulator or Android 
 # Heavy resources go through `slots`
 
 Several agent sessions share this machine's memory and cores. `slots` queues heavy work and starts it when a slot
-is free and the machine can afford it. It is on your PATH while the agent-slots plugin is enabled.
+is free and the machine can afford it.
+
+The command is `${CLAUDE_PLUGIN_ROOT}/scripts/slots`; below it is written `slots`. Use the full path in every
+command unless `command -v slots` finds it on your PATH.
 
 ## Commands
 - Compile: `slots run build --owner <name> -- <build command>`. A build that alone fills the machine (Bazel, a

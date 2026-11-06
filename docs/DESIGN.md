@@ -17,7 +17,7 @@ chats shared one MacBook (M3 Pro, 18 GB RAM, 12 cores). Every rule below was an 
 | Old copies of the script in chats' branches held both slots for hours (11-03) | one canonical copy; stale copies and queued waiters re-execute it | `canonical`, `reexec`; `Canonical` tests |
 | Holders that never booted their simulator kept slots (11-03) | a holder whose instance is not running after `stale_seconds` loses the slot | `_dead_reason`; `test_stuck_holder...` |
 | A waiter for a busy device made everyone behind it wait | no head-of-line blocking: skip waiters whose key is held | `plan`; `test_same_key_waits_but_does_not_block_others` |
-| Agents run in zsh, which does not word-split `$RS` holding "python3 path", and expands unquoted `[...]` and `$VAR` in the caller | one executable (`bin/slots`, works through a symlink); `{key}` replaced in argv by `slots` and `SLOTS_KEY` in the environment, with no shell between `slots` and the command | `bin/slots`, `Scheduler.run`; `test_keys_are_picked_and_passed_to_the_command` |
+| Agents run in zsh, which does not word-split `$RS` holding "python3 path", and expands unquoted `[...]` and `$VAR` in the caller | one executable (`scripts/slots`, works through a symlink); `{key}` replaced in argv by `slots` and `SLOTS_KEY` in the environment, with no shell between `slots` and the command | `scripts/slots`, `Scheduler.run`; `test_keys_are_picked_and_passed_to_the_command` |
 
 ## Choices
 - **No daemon.** A daemon would need installing, starting, upgrading and watching, and an agent cannot tell a

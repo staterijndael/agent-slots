@@ -2,7 +2,7 @@
 that heavy resources go through `slots`.
 
 The plugin's own folder moves on every plugin update, and old folders are removed, so the canonical copy lives in
-the plugin's data folder (${CLAUDE_PLUGIN_DATA}), which survives updates: this hook copies the package there when
+the plugin's data folder (CLAUDE_PLUGIN_DATA), which survives updates: this hook copies the package there when
 it changed, and every waiting `slots` process re-executes the new copy within one poll. A machine config that
 names another canonical copy (a git checkout, say) is left alone. Any error here is silent: a session must start."""
 import json
@@ -45,9 +45,10 @@ def main():
         created = True
     cfg = config.load()
     pools = ', '.join(f"{name} ({pool['type']}, {pool['capacity']})" for name, pool in cfg['pools'].items())
-    note = (f"This machine shares heavy resources between agent sessions through `slots` (agent-slots plugin). "
+    slots = shutil.which('slots') and 'slots' or str(ROOT / 'scripts' / 'slots')
+    note = (f"This machine shares heavy resources between agent sessions through the agent-slots plugin. "
             f"Pools: {pools or 'none configured'}. Compiles, simulator and emulator boots go through "
-            f"`slots run <pool> --owner <session name> -- <command>`; `slots status` shows the queue. "
+            f"`{slots} run <pool> --owner <session name> -- <command>`; `{slots} status` shows the queue. "
             f"The agent-slots:slots skill has the details.")
     if created:
         note += f" A starter config was written to {path}; /agent-slots:setup tunes it for this machine."
