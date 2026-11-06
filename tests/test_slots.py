@@ -110,7 +110,9 @@ class Simulators(Base):
         # Grant order is the queue order; boots of two slots granted together may start in either order.
         log = (self.root / 'home' / 'log.txt').read_text()
         granted = [line.split('slot -> ')[1].split(' ')[0] for line in log.splitlines() if 'slot -> ' in line]
-        self.assertEqual(granted, [f'chat-{x}' for x in 'ABCDE'], 'first come, first served')
+        # Two slots freed together are planned for the next two waiters at once; either may log its grant first.
+        self.assertEqual([set(granted[0:2]), set(granted[2:4]), granted[4]],
+                         [{'chat-A', 'chat-B'}, {'chat-C', 'chat-D'}, 'chat-E'], 'first come, first served')
         self.assertEqual(sorted(e[1] for e in self.events() if e[0] == 'boot'), [udid(x) for x in 'ABCDE'])
         self.assertLess(time.time() - started, 4.0, 'three rounds on two slots; idle slots would take longer')
 
